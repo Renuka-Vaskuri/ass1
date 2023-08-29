@@ -1,4 +1,5 @@
-provider "aws" {  region = "us-east-1"  # Set your desired region
+provider "aws" {  region     = "us-east-1"
+  access_key = "your key"  secret_key = "secret key"
 }
 resource "aws_vpc" "my_vpc" {  cidr_block = "10.0.0.0/16"
 }
@@ -17,7 +18,7 @@ resource "aws_security_group" "instance_sg" {  name        = "instance_sg"
     protocol    = "-1"    cidr_blocks = ["0.0.0.0/0"]
   }}
 resource "aws_instance" "ec2_instance" {
-  ami           = "ami-xxxxxxxxxxxxxxxxx"  # Replace with your desired AMI ID  instance_type = "t2.micro"
+  ami           = "ami-051f7e7f6c2f40dc1"  # Replace with your desired AMI ID  instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id  security_groups = [aws_security_group.instance_sg.id]
     root_block_device {
     volume_size = 5    volume_type = "gp2"
